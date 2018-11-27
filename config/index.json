@@ -1,0 +1,10 @@
+{
+    "CHARSET": "utf8",
+    "ENTER": "\n",
+    "SPACE": " ",
+    "SPACE2": "  ",
+    "SPACE3": "   ",
+    "SPACE4": "    ",
+    "STARTMESSAGE": "   Select your target server:",
+    "ERRMSG": "\n    The number out of range\n"
+}
