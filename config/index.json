@@ -6,5 +6,6 @@
     "SPACE3": "   ",
     "SPACE4": "    ",
     "STARTMESSAGE": "   Select your target server:",
-    "ERRMSG": "\n    The number out of range\n"
+    "ERRMSG": "\n    Number out of the range\n",
+    "ERRMSG2": "\n    Invalid number\n"
 }

@@ -9,7 +9,7 @@ const yaml = require('yaml')
 const ssh = require('node-ssh-shell')
 const conf = path.join(process.env.HOME, '.jumpserver.yml')
 const example = path.join(__dirname, './config/jumpserver.yml')
-const { CHARSET, SPACE, SPACE2, SPACE3, ENTER, STARTMESSAGE, ERRMSG } = require('./config')
+const { CHARSET, SPACE, SPACE2, SPACE3, ENTER, STARTMESSAGE, ERRMSG, ERRMSG2 } = require('./config')
 
 class JumpServer {
     constructor(number) {
@@ -79,10 +79,23 @@ class JumpServer {
             message: "Please input the server's number:"
         }
         inquirer.prompt(q).then(res => {
+            // 退出逻辑
+            if (res.server === 'exit') {
+                return process.exit(0)
+            }
+
+            // 非数字参数警告
+            if (isNaN(res.server)) {
+                console.log(chalk.red(ERRMSG2))
+                return this.prompt()
+            }
+
             const index = Number(res.server) - 1
             
+            // 超出范围警告
             if (index < 0 || index >= this.serverList.length) {
-                return console.error(chalk.red(ERRMSG))
+                console.error(chalk.red(ERRMSG))
+                return this.prompt()
             }
 
             const server = this.serverList[index]
@@ -94,9 +107,14 @@ class JumpServer {
     // make ssh2 client.connect options
     makeSSHOptions(server) {
         const options = Object.assign({}, this.auth, server)
+
+        // 清理非ssh2.Client.connect参数
         delete options.name
         delete options.desc
         delete options.index
+
+        // 转换passphrase为字符串类型，ssh2官方定义为字符串类型，其他类型会报错
+        options.passphrase = String(options.passphrase)
 
         if (options.privateKey) {
             try {
