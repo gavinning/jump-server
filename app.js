@@ -113,7 +113,8 @@ class JumpServer {
         delete options.desc
         delete options.index
 
-        // 转换passphrase为字符串类型，ssh2官方定义为字符串类型，其他类型会报错
+        // 转换某些字段为字符串类型，ssh2官方定义为字符串类型，其他类型会报错
+        options.password = String(options.password)
         options.passphrase = String(options.passphrase)
 
         if (options.privateKey) {
