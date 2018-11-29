@@ -1,4 +1,3 @@
-
 const fs = require('fs')
 const path = require('path')
 const lab = require('linco.lab')
@@ -9,7 +8,7 @@ const yaml = require('yaml')
 const ssh = require('node-ssh-shell')
 const conf = path.join(process.env.HOME, '.jumpserver.yml')
 const example = path.join(__dirname, './config/jumpserver.yml')
-const { CHARSET, SPACE, SPACE2, SPACE3, ENTER, STARTMESSAGE, ERRMSG, ERRMSG2 } = require('./config')
+const { CHARSET, SPACE, SPACE2, SPACE3, ENTER, STARTMESSAGE, ERRMSG, ERRMSG2, EXIT } = require('./config')
 
 class JumpServer {
     constructor(number) {
@@ -80,7 +79,7 @@ class JumpServer {
         }
         inquirer.prompt(q).then(res => {
             // 退出逻辑
-            if (res.server === 'exit') {
+            if (EXIT.includes(res.server)) {
                 return process.exit(0)
             }
 

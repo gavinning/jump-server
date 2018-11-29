@@ -7,5 +7,6 @@
     "SPACE4": "    ",
     "STARTMESSAGE": "   Select your target server:",
     "ERRMSG": "\n    Number out of the range\n",
-    "ERRMSG2": "\n    Invalid number\n"
+    "ERRMSG2": "\n    Invalid number\n",
+    "EXIT": ["q", "quit", "exit"]
 }
