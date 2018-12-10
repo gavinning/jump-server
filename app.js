@@ -116,12 +116,18 @@ class JumpServer {
         options.password = String(options.password)
         options.passphrase = String(options.passphrase)
 
+        if (options.privateKey === undefined && options.privateKey === 'null') {
+            delete options.privateKey
+        }
+
         if (options.privateKey) {
             try {
                 options.privateKey = fs.readFileSync(options.privateKey)
             }
             catch(err) {
-                throw new Error('privateKey读取异常，请检查路径是否正确')
+                console.log(chalk.cyan('privateKey path: ' + options.privateKey))
+                console.log(chalk.red('ERROR: privateKey读取异常，请检查路径是否正确'))
+                delete options.privateKey
             }
         }
         return options
