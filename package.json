@@ -1,6 +1,6 @@
 {
   "name": "@gavinning/jump-server",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "jump server",
   "main": "app.js",
   "bin": {
@@ -16,7 +16,7 @@
     "commander": "^2.19.0",
     "inquirer": "^6.2.0",
     "linco.lab": "^2.1.0",
-    "node-ssh-shell": "^0.1.0",
+    "node-ssh-shell": "^0.1.4",
     "yaml": "^1.0.2"
   },
   "devDependencies": {},
